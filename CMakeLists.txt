@@ -13,6 +13,8 @@ option(BUILD_TESTS "Build the tests." ON)
 option(BUILD_DOCS "Build the docs." ON)
 option(BUILD_EXAMPLES "Build the examples." ON)
 
+include(detect-arch)
+
 if(BUILD_TESTS)
   include(CTest)
   add_subdirectory(tests)
