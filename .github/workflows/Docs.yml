@@ -33,8 +33,8 @@ jobs:
         
     - name: Configure
       run: cmake -S ${{ github.workspace }} -B ${{ env.CMAKE_BUILD_PREFIX }} -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
-        && cmake --build docs --config ${{ env.CMAKE_BUILD_TYPE }} --parallel 2
-        && cmake --install docs --prefix bin --strip
+        && cmake --build ${{ env.CMAKE_BUILD_PREFIX }} --config ${{ env.CMAKE_BUILD_TYPE }} --parallel 2 --target docs
+        && cmake --install ${{ env.CMAKE_BUILD_PREFIX }} --prefix bin --strip
         && touch bin/.nojekyll
 
     - name: Deploy docs
