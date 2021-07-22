@@ -35,7 +35,7 @@ jobs:
       run: cmake -S ${{ github.workspace }} -B ${{ env.CMAKE_BUILD_PREFIX }} -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         && cmake --build ${{ env.CMAKE_BUILD_PREFIX }} --config ${{ env.CMAKE_BUILD_TYPE }} --parallel 2 --target docs
         && cmake --install ${{ env.CMAKE_BUILD_PREFIX }} --prefix ${{ github.workspace }}/bin --strip
-        && touch ${{ github.workspace }}/bin/docs/.nojekyll
+        && touch ${{ github.workspace }}/bin/docs/html/.nojekyll
 
     - name: Deploy docs
       uses: JamesIves/github-pages-deploy-action@releases/v3
