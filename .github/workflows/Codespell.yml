@@ -3,9 +3,6 @@ name: Codespell
 on:
     push:
     pull_request:
-    schedule:
-    #Every Sunday at midnight
-    - cron:  '0 0 * * 0'
 
 jobs:
   codespell:
