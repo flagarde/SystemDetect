@@ -6,7 +6,8 @@ on:
 
 env:
   CMAKE_VERSION: 3.16.x
-  BUILD_TYPE: Release
+  CMAKE_BUILD_TYPE: Release
+  CMAKE_BUILD_PREFIX: "${{ github.workspace }}/build"
 
 jobs:
   docs:
@@ -29,13 +30,12 @@ jobs:
       with:
         cmake-version: '${{env.CMAKE_VERSION}}'
         github-api-token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build docs
-      run: cmake -S . -B build -DCMAKE_INSTALL_PREFIX=bin -DBUILD_DOCS=ON -DCMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
-        && cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }} --parallel ${N}
-        && cmake --install build --prefix bin --strip
-        && make install
-        && touch .nojekyll
+        
+    - name: Configure
+      run: cmake -S ${{ github.workspace }} -B ${{ env.CMAKE_BUILD_PREFIX }} -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
+        && cmake --build docs --config ${{ env.CMAKE_BUILD_TYPE }} --parallel 2
+        && cmake --install docs --prefix bin --strip
+        && touch bin/.nojekyll
 
     - name: Deploy docs
       uses: JamesIves/github-pages-deploy-action@releases/v3
