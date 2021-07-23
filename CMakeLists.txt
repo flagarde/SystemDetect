@@ -7,7 +7,7 @@ cmmm(VERSION "2.0" REPOSITORY "flagarde/CMakeMM" PROVIDER "gitlab" VERBOSITY VER
 
 cmmm_modules_list(REPOSITORY "flagarde/CMakeCM" PROVIDER "gitlab")
 
-project(SystemDetect VERSION 1.0 LANGUAGES C CXX)
+project(SystemDetect VERSION 1.0 DESCRIPTION "Modern way to detect OS... with C++ and CMake" LANGUAGES C CXX)
 
 option(BUILD_TESTS "Build the tests." ON)
 option(BUILD_DOCS "Build the docs." ON)
