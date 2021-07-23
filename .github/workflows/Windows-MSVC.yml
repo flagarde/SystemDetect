@@ -4,8 +4,6 @@ env:
   CMAKE_VERSION: 3.16.x
   CMAKE_BUILD_TYPE: Release
   CMAKE_BUILD_PREFIX: "${{ github.workspace }}/build"
-  ROOT_VERSION: "6.24.00"
-  ROOT_URL: "https://root.cern/download"
 
 on:
     push:
