@@ -14,6 +14,8 @@ option(BUILD_DOCS "Build the docs." ON)
 option(BUILD_EXAMPLES "Build the examples." ON)
 
 include(detect-arch)
+include(detect-endianness)
+include(detect-compiler)
 
 if(BUILD_TESTS)
   include(CTest)

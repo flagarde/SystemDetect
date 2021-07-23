@@ -1,0 +1,13 @@
+include_guard(GLOBAL)
+
+if(${CMAKE_VERSION} VERSION_LESS "3.20")
+  include(TestBigEndian)
+  test_big_endian(ENDIANNESS)
+  if(${ENDIANNESS} EQUAL 1)
+    set(CMAKE_C_BYTE_ORDER "BIG_ENDIAN")
+    set(CMAKE_CXX_BYTE_ORDER "BIG_ENDIAN")
+  else()
+    set(CMAKE_C_BYTE_ORDER "LITTLE_ENDIAN")
+    set(CMAKE_CXX_BYTE_ORDER "LITTLE_ENDIAN")
+  endif()
+endif()
