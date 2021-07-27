@@ -1,10 +1,10 @@
 # SystemDetect
 
-Modern way to detect OS... with c++ and CMake 
+Modern way to detect OS... with c++ and CMake
 <h1>
-  
+
 > [📖 Documentation](https://flagarde.github.io/SystemDetect/) [![Docs](https://github.com/flagarde/SystemDetect/actions/workflows/Docs.yml/badge.svg)](https://github.com/flagarde/SystemDetect/actions/workflows/Docs.yml)
-</h1> 
+</h1>
 
 [LC]: https://github.com/flagarde/SystemDetect/actions/workflows/Linux-Clang.yml
 [LCB]: https://github.com/flagarde/SystemDetect/actions/workflows/Linux-Clang.yml/badge.svg
