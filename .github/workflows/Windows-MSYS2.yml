@@ -18,8 +18,8 @@ jobs:
         include:
           - { icon: '⬛', sys: mingw32, env: i686, name: MINGW32 }
           - { icon: '🟦', sys: mingw64, env: x86_64, name: MINGW64 }
-          - { icon: '🟨', sys: ucrt64,  env: ucrt-x86_64, name: UCRT64 }  # Experimental!
-          - { icon: '🟧', sys: clang64, env: clang-x86_64, name: Clang64 } # Experimental!
+          - { icon: '🟩', sys: ucrt64,  env: ucrt-x86_64, name: UCRT64 }  # Experimental!
+          - { icon: '🟥', sys: clang64, env: clang-x86_64, name: Clang64 } # Experimental!
     name: '🚧 ${{ matrix.icon }} ${{ matrix.name }}'
     defaults:
       run:
