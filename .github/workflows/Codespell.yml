@@ -6,7 +6,7 @@ on:
 
 jobs:
   codespell:
-    name: '✔️ Codespell'
+    name: '☑️ Codespell'
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: '✔️ Run codespell'
+    - name: '☑️ Run codespell'
       uses: codespell-project/actions-codespell@master
       with:
         check_filenames: true
