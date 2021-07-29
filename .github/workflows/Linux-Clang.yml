@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { icon: '⬛', cc: clang-10, cxx: clang++-10, name: 'Clang 10' }
+          - { icon: '🟨', cc: clang-10, cxx: clang++-10, name: 'Clang 10' }
           - { icon: '🟦', cc: clang-11, cxx: clang++-11, name: 'Clang 11' }
     name: '🚧 ${{ matrix.icon }} ${{ matrix.name }}'
 
@@ -31,6 +31,7 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1.9
       with:
         cmake-version: '${{env.CMAKE_VERSION}}'
+        github-api-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: '🔧 Configure'
       env:
