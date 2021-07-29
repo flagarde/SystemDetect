@@ -41,7 +41,7 @@ jobs:
       run: cmake --build ${{ env.CMAKE_BUILD_PREFIX }} --config ${{ env.CMAKE_BUILD_TYPE }} --parallel 2 --target docs
 
     - name: '📥 Install'
-        && cmake --install ${{ env.CMAKE_BUILD_PREFIX }} --prefix ${{ github.workspace }}/bin --strip
+        run: cmake --install ${{ env.CMAKE_BUILD_PREFIX }} --prefix ${{ github.workspace }}/bin --strip
         && touch ${{ github.workspace }}/bin/docs/html/.nojekyll
 
     - name: '🎉 Deploy'
