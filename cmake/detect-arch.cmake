@@ -1,6 +1,6 @@
 # detect-arch.cmake -- Detect compiler architecture and set ARCH and BASEARCH
-# Copyright (C) 2019 Hans Kristian Rosbach
-# Licensed under the Zlib license, see LICENSE.md for details
+# Copyright (C) 2019 Hans Kristian Rosbach Licensed under the Zlib license, see
+# LICENSE.md for details
 include_guard(GLOBAL)
 
 include(Messages)
@@ -8,34 +8,35 @@ include(Messages)
 set(ARCHDETECT_FOUND TRUE)
 
 if(CMAKE_OSX_ARCHITECTURES)
-  # If multiple architectures are requested (universal build), pick only the first
+  # If multiple architectures are requested (universal build), pick only the
+  # first
   list(GET CMAKE_OSX_ARCHITECTURES 0 ARCH)
 elseif(MSVC)
   if("${MSVC_C_ARCHITECTURE_ID}" STREQUAL "X86")
     set(ARCH "i686")
   elseif("${MSVC_C_ARCHITECTURE_ID}" STREQUAL "x64")
     set(ARCH "x86_64")
-  elseif("${MSVC_C_ARCHITECTURE_ID}" STREQUAL "ARM" OR "${MSVC_C_ARCHITECTURE_ID}" STREQUAL "ARMV7")
+  elseif("${MSVC_C_ARCHITECTURE_ID}" STREQUAL "ARM"
+         OR "${MSVC_C_ARCHITECTURE_ID}" STREQUAL "ARMV7")
     set(ARCH "arm")
-  elseif ("${MSVC_C_ARCHITECTURE_ID}" STREQUAL "ARM64")
+  elseif("${MSVC_C_ARCHITECTURE_ID}" STREQUAL "ARM64")
     set(ARCH "aarch64")
   endif()
 elseif(CMAKE_CROSSCOMPILING)
   set(ARCH ${CMAKE_C_COMPILER_TARGET})
 else()
-  # Let preprocessor parse archdetect.c and raise an error containing the arch identifier
+  # Let preprocessor parse archdetect.c and raise an error containing the arch
+  # identifier
   enable_language(C)
   try_run(
-    run_result_unused
-    compile_result_unused
-    ${CMAKE_CURRENT_BINARY_DIR}
+    run_result_unused compile_result_unused ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/detect-arch.c
     COMPILE_OUTPUT_VARIABLE RAWOUTPUT
-    CMAKE_FLAGS CMAKE_OSX_ARCHITECTURES=${CMAKE_OSX_ARCHITECTURES}
-  )
+    CMAKE_FLAGS CMAKE_OSX_ARCHITECTURES=${CMAKE_OSX_ARCHITECTURES})
 
   # Find basearch tag, and extract the arch word into BASEARCH variable
-  string(REGEX REPLACE ".*archfound ([a-zA-Z0-9_]+).*" "\\1" ARCH "${RAWOUTPUT}")
+  string(REGEX REPLACE ".*archfound ([a-zA-Z0-9_]+).*" "\\1" ARCH
+                       "${RAWOUTPUT}")
   if(NOT ARCH)
     set(ARCH "unknown")
   endif()

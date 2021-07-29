@@ -1,7 +1,10 @@
 include_guard(GLOBAL)
 
 function(cmmm)
-  cmake_parse_arguments(CMMM "NO_COLOR" "VERSION;DESTINATION;INACTIVITY_TIMEOUT;TIMEOUT;REPOSITORY;PROVIDER" "" "${ARGN}")
+  cmake_parse_arguments(
+    CMMM "NO_COLOR"
+    "VERSION;DESTINATION;INACTIVITY_TIMEOUT;TIMEOUT;REPOSITORY;PROVIDER" ""
+    "${ARGN}")
 
   if(NOT DEFINED CMMM_VERSION)
     set(CMMM_TAG "main")
@@ -14,7 +17,8 @@ function(cmmm)
   if(NOT DEFINED CMMM_DESTINATION)
     set(CMMM_DESTINATION "${CMAKE_BINARY_DIR}")
   endif()
-  get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE BASE_DIR "${CMAKE_BINARY_DIR}")
+  get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE
+                         BASE_DIR "${CMAKE_BINARY_DIR}")
 
   if(NOT DEFINED CMMM_INACTIVITY_TIMEOUT)
     set(CMMM_INACTIVITY_TIMEOUT "5")
@@ -38,29 +42,49 @@ function(cmmm)
     set(CMMM_URL "https://gitee.com/${CMMM_REPOSITORY}/raw")
   else()
     if(CMMM_NO_COLOR OR WIN32)
-      message("## [CMakeMM] Provider \"${CMMM_PROVIDER}\" unknown. Fallback to \"github\" ##")
+      message(
+        "## [CMakeMM] Provider \"${CMMM_PROVIDER}\" unknown. Fallback to \"github\" ##"
+      )
     else()
-      message("${Esc}[1;33m## [CMakeMM] Provider \"${CMMM_PROVIDER}\" unknown. Fallback to \"github\" ##${Esc}[m")
+      message(
+        "${Esc}[1;33m## [CMakeMM] Provider \"${CMMM_PROVIDER}\" unknown. Fallback to \"github\" ##${Esc}[m"
+      )
     endif()
     set(CMMM_URL "https://raw.githubusercontent.com/${CMMM_REPOSITORY}")
   endif()
 
-  if(NOT CMAKEMM_INITIALIZED_${CMMM_TAG} OR NOT EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
+  if(NOT CMAKEMM_INITIALIZED_${CMMM_TAG}
+     OR NOT EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
 
     if(CMMM_NO_COLOR OR WIN32)
-      message("-- [CMakeMM] Downloading CMakeMM (${CMMM_TAG}) from ${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake to ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake --")
+      message(
+        "-- [CMakeMM] Downloading CMakeMM (${CMMM_TAG}) from ${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake to ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake --"
+      )
     else()
-      message("${Esc}[1;35m-- [CMakeMM] Downloading CMakeMM (${CMMM_TAG}) from ${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake --${Esc}[m")
+      message(
+        "${Esc}[1;35m-- [CMakeMM] Downloading CMakeMM (${CMMM_TAG}) from ${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake --${Esc}[m"
+      )
     endif()
 
-    file(DOWNLOAD "${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake" "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake" INACTIVITY_TIMEOUT "${CMMM_INACTIVITY_TIMEOUT}" LOG LOG_ STATUS CMAKECM_STATUS TIMEOUT "${CMMM_TIMEOUT}")
+    file(
+      DOWNLOAD "${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake"
+      "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake"
+      INACTIVITY_TIMEOUT "${CMMM_INACTIVITY_TIMEOUT}"
+      LOG LOG_
+      STATUS CMAKECM_STATUS
+      TIMEOUT "${CMMM_TIMEOUT}")
     list(GET CMAKECM_STATUS 0 CMAKECM_CODE)
     list(GET CMAKECM_STATUS 1 CMAKECM_MESSAGE)
     if(${CMAKECM_CODE})
       if(CMMM_NO_COLOR OR WIN32)
-        message(FATAL_ERROR "[CMakeMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}")
+        message(
+          FATAL_ERROR
+            "[CMakeMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}")
       else()
-        message(FATAL_ERROR "${Esc}[1;31m [CMakeMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}${Esc}[m")
+        message(
+          FATAL_ERROR
+            "${Esc}[1;31m [CMakeMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}${Esc}[m"
+        )
       endif()
     endif()
 
@@ -68,7 +92,9 @@ function(cmmm)
 
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
 
-  set(ARGN "URL;${CMMM_URL};DESTINATION;${CMMM_DESTINATION};INACTIVITY_TIMEOUT;${CMMM_INACTIVITY_TIMEOUT};TIMEOUT;${CMMM_TIMEOUT};TAG;${CMMM_TAG};${ARGN}")
+  set(ARGN
+      "URL;${CMMM_URL};DESTINATION;${CMMM_DESTINATION};INACTIVITY_TIMEOUT;${CMMM_INACTIVITY_TIMEOUT};TIMEOUT;${CMMM_TIMEOUT};TAG;${CMMM_TAG};${ARGN}"
+  )
   list(REMOVE_DUPLICATES ARGN)
 
   cmmm_entry("${ARGN}")

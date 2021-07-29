@@ -38,7 +38,7 @@ else()
   set(CXX_COMPILER_VERSION "-1")
 endif()
 
-#MSVC seems to not propagate the C version
+# MSVC seems to not propagate the C version
 if(DEFINED CMAKE_CXX_COMPILER_VERSION AND MSVC)
   set(C_COMPILER_VERSION_MAJOR "${CXX_COMPILER_VERSION_MAJOR}")
   set(C_COMPILER_VERSION_MINOR "${CXX_COMPILER_VERSION_MINOR}")
