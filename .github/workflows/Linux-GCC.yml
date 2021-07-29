@@ -1,9 +1,9 @@
-name: Linux GCC
+name: 'Linux GCC'
 
 env:
-  CMAKE_VERSION: 3.16.x
-  CMAKE_BUILD_TYPE: Release
-  CMAKE_BUILD_PREFIX: "./build"
+  CMAKE_VERSION: '3.16.x'
+  CMAKE_BUILD_TYPE: 'Release'
+  CMAKE_BUILD_PREFIX: './build'
 
 on:
   push:
