@@ -1,9 +1,9 @@
-# SystemDetect
+# SystemDetect [![Docs](https://github.com/flagarde/SystemDetect/actions/workflows/Docs.yml/badge.svg)](https://github.com/flagarde/SystemDetect/actions/workflows/Docs.yml) [![Format](https://github.com/flagarde/SystemDetect/actions/workflows/Format.yml/badge.svg)](https://github.com/flagarde/SystemDetect/actions/workflows/Format.yml) [![Codespell](https://github.com/flagarde/SystemDetect/actions/workflows/Codespell.yml/badge.svg)](https://github.com/flagarde/SystemDetect/actions/workflows/Codespell.yml) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit.com/master.svg)](https://results.pre-commit.ci/run/github/388531954/1627586985.K88huGY_TVabl1wZozsDyw)
 
 Modern way to detect OS... with c++ and CMake
 <h1>
 
-> [📖 Documentation](https://flagarde.github.io/SystemDetect/) [![Docs](https://github.com/flagarde/SystemDetect/actions/workflows/Docs.yml/badge.svg)](https://github.com/flagarde/SystemDetect/actions/workflows/Docs.yml)
+> [📖 Documentation](https://flagarde.github.io/SystemDetect/)
 </h1>
 
 [LC]: https://github.com/flagarde/SystemDetect/actions/workflows/Linux-Clang.yml
