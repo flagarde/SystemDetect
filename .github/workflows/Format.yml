@@ -34,7 +34,7 @@ jobs:
       run: find . \( -name '*.cmake' -o -name 'CMakeLists.txt' \) -exec cmake-format -i {} \;
 
     - name: '📨 Use Commit'
-      uses: EndBug/add-and-commit@v4
+      uses: EndBug/add-and-commit@v7.2.1
       with:
         default_author: github_actions
         message: 'Committing clang-format changes'
