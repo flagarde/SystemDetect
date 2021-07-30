@@ -30,6 +30,8 @@ include(detect-arch)
 include(detect-endianness)
 include(detect-compiler)
 
+add_subdirectory(src)
+
 if(BUILD_TESTS)
   include(CTest)
   add_subdirectory(tests)
