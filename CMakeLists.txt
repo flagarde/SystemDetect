@@ -42,6 +42,5 @@ if(BUILD_EXAMPLES)
 endif()
 
 if(BUILD_DOCS)
-  include(Documentations)
   add_subdirectory(docs)
 endif()
